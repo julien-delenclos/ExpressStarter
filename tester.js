@@ -1,4 +1,4 @@
-import ExpressApp from './app'
+import ExpressApp from './transpiled'
 import Routes from './routes'
 
 let expressConfig = {

@@ -4,6 +4,8 @@
   "private": true,
   "main": "app.js",
   "scripts": {
+    "start": "nodemon  tester.js",
+    "build": "babel --out-dir ./build --source-maps --copy-files ./app.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
