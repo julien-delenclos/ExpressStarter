@@ -4,7 +4,6 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "nodemon transpiled/index.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
