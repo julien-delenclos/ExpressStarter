@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.ExpressApp = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
@@ -122,5 +122,5 @@ function ExpressApp(config) {
   Object.assign(this.config, config);
 };
 
-exports["default"] = ExpressApp;
+exports.ExpressApp = ExpressApp;
 //# sourceMappingURL=app.js.map

@@ -7,7 +7,7 @@ import cluster from 'cluster'
 import os from 'os'
 
 /** ExpressApp Class to create and start an Express Application */
-export default class ExpressApp {
+export class ExpressApp {
   config = {
     title: 'ExpressApp',
     version: '',
