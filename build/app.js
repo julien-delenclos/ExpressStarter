@@ -63,29 +63,35 @@ function ExpressApp(config) {
   };
 
   this.start = function () {
-    if (_cluster["default"].isMaster) {
-      var started = 0;
-      Array(_os["default"].cpus().length).fill().forEach(function () {
-        return _cluster["default"].fork();
-      });
-
-      _cluster["default"].on('exit', function (worker) {
-        return _this.config.logger.info("Module #".concat(worker.id, " has exitted."));
-      });
-
-      _cluster["default"].on('online', function (worker) {
-        return _this.config.logger.info("Start module #".concat(worker.id));
-      });
-
-      _cluster["default"].on('listening', function (worker, address) {
-        _this.config.logger.info("Module #".concat(worker.id, " started and listening on port ").concat(address.port));
-
-        if (++started == _os["default"].cpus().length) {
-          _this.masterTask();
-        }
-      });
-    } else {
+    if (process.env.NODE_ENV === 'development') {
       _this.workerTask();
+
+      _this.masterTask();
+    } else {
+      if (_cluster["default"].isMaster) {
+        var started = 0;
+        Array(_os["default"].cpus().length).fill().forEach(function () {
+          return _cluster["default"].fork();
+        });
+
+        _cluster["default"].on('exit', function (worker) {
+          return _this.config.logger.info("Module #".concat(worker.id, " has exitted."));
+        });
+
+        _cluster["default"].on('online', function (worker) {
+          return _this.config.logger.info("Start module #".concat(worker.id));
+        });
+
+        _cluster["default"].on('listening', function (worker, address) {
+          _this.config.logger.info("Module #".concat(worker.id, " started and listening on port ").concat(address.port));
+
+          if (++started == _os["default"].cpus().length) {
+            _this.masterTask();
+          }
+        });
+      } else {
+        _this.workerTask();
+      }
     }
   };
 

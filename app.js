@@ -39,19 +39,25 @@ export default class ExpressApp {
   }
 
   start = () => {
-    if (cluster.isMaster) {
-      let started = 0
-      Array(os.cpus().length).fill().forEach(() => cluster.fork())
-      cluster.on('exit', worker => this.config.logger.info(`Module #${worker.id} has exitted.`))
-      cluster.on('online', worker => this.config.logger.info(`Start module #${worker.id}`))
-      cluster.on('listening', (worker, address) => {
-        this.config.logger.info(`Module #${worker.id} started and listening on port ${address.port}`)
-        if(++started == os.cpus().length){
-          this.masterTask()
-        }
-      })
-    } else {
+    if(process.env.NODE_ENV === 'development'){
       this.workerTask()
+      this.masterTask()
+    }
+    else {
+      if (cluster.isMaster) {
+        let started = 0
+        Array(os.cpus().length).fill().forEach(() => cluster.fork())
+        cluster.on('exit', worker => this.config.logger.info(`Module #${worker.id} has exitted.`))
+        cluster.on('online', worker => this.config.logger.info(`Start module #${worker.id}`))
+        cluster.on('listening', (worker, address) => {
+          this.config.logger.info(`Module #${worker.id} started and listening on port ${address.port}`)
+          if(++started == os.cpus().length){
+            this.masterTask()
+          }
+        })
+      } else {
+        this.workerTask()
+      }
     }
   }
 
