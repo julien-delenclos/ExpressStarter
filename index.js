@@ -1,10 +1,5 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ExpressApp = void 0;
-
 var _express = _interopRequireDefault(require("express"));
 
 var _path = _interopRequireDefault(require("path"));
@@ -122,5 +117,5 @@ function ExpressApp(config) {
   Object.assign(this.config, config);
 };
 
-exports.ExpressApp = ExpressApp;
-//# sourceMappingURL=app.js.map
+module.exports = ExpressApp;
+//# sourceMappingURL=index.js.map

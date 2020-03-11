@@ -4,12 +4,11 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "nodemon  tester.js",
-    "build": "babel --out-dir ./build --source-maps --copy-files ./app.js"
+    "build": "babel --out-dir ./ --source-maps --copy-files ./src/index.js",
+    "start": "npm run build & node src/tester.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
@@ -19,12 +18,8 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.7",
-    "@babel/node": "^7.8.7",
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "@babel/preset-env": "^7.8.7",
-    "@babel/preset-stage-0": "^7.8.3",
-    "@babel/register": "^7.8.6",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "nodemon": "^2.0.2"
+    "babel-plugin-transform-class-properties": "^6.24.1"
   }
 }

@@ -7,7 +7,7 @@ import cluster from 'cluster'
 import os from 'os'
 
 /** ExpressApp Class to create and start an Express Application */
-export class ExpressApp {
+class ExpressApp {
   config = {
     title: 'ExpressApp',
     version: '',
@@ -85,3 +85,5 @@ export class ExpressApp {
     server.setTimeout(500000)
   }
 }
+
+module.exports = ExpressApp

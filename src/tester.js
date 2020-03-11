@@ -1,5 +1,4 @@
-import ExpressApp from './transpiled'
-import Routes from './routes'
+const ExpressApp = require('../index')
 
 let expressConfig = {
   title: 'Titre',
@@ -7,7 +6,7 @@ let expressConfig = {
   port: 3001,
   logger: {...console, write: console.log},
   routesDirectory: './routes',
-  routes: Routes
+  routes: require('./routes')
 }
 
 let expressApp = new ExpressApp(expressConfig)
