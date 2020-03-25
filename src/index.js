@@ -71,7 +71,7 @@ class ExpressApp {
     app.use(
       express.json(),
       express.urlencoded({ extended: false }),
-      express.static(path.join(__dirname, this.config.publicDirectory)),
+      express.static(path.isAbsolute(this.config.publicDirectory) ? this.config.publicDirectory : path.join(__dirname + '/../..', this.config.publicDirectory)),
       cookieParser(),
       morgan('tiny', {stream: this.config.logger}),
       (req, res, next) => {

@@ -100,7 +100,7 @@ function ExpressApp(config) {
     var app = (0, _express["default"])();
     app.use(_express["default"].json(), _express["default"].urlencoded({
       extended: false
-    }), _express["default"]["static"](_path["default"].join(__dirname, _this.config.publicDirectory)), (0, _cookieParser["default"])(), (0, _morgan["default"])('tiny', {
+    }), _express["default"]["static"](_path["default"].isAbsolute(_this.config.publicDirectory) ? _this.config.publicDirectory : _path["default"].join(__dirname + '/../..', _this.config.publicDirectory)), (0, _cookieParser["default"])(), (0, _morgan["default"])('tiny', {
       stream: _this.config.logger
     }), function (req, res, next) {
       res.header('Access-Control-Allow-Origin', '*');
